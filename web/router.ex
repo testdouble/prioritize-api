@@ -19,8 +19,11 @@ defmodule PrioritizeApi.Router do
     get "/", PageController, :index
   end
 
+
   # Other scopes may use custom stacks.
-  # scope "/api", PrioritizeApi do
-  #   pipe_through :api
-  # end
+  scope "/", PrioritizeApi do
+    pipe_through :api
+
+    resources "/users", UserController
+  end
 end
