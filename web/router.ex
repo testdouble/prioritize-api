@@ -20,7 +20,7 @@ defmodule PrioritizeApi.Router do
   end
 
 
-  # Other scopes may use custom stacks.
+  # We should not have both stacks used for /, will likely just be API at some point
   scope "/", PrioritizeApi do
     pipe_through :api
 
