@@ -16,3 +16,26 @@ pushButton.onclick = function() { channel.push('ping', {body: 'data'}) };
 channel.join()
   .receive('ok', function(resp) { console.log('got an OK response', resp) })
   .receive('error', function(resp) { console.log('got an error response', resp) });
+
+// ***********
+
+var newTopicText = document.getElementById('newtopic');
+var submitButton = document.getElementById('submitnewtopic');
+
+var topicsChannel = socket.channel('topics:suggest', {});
+// var rankChannel = socket.channel('topics:rank', {});
+// var discussChannel = socket.channel('topics:discuss', {});
+
+submitButton.onclick = function() {
+  topicsChannel.push('addTopic', {
+    body: newTopicText.value
+  });
+};
+
+topicsChannel.on('newTopic', function(payload) {
+  console.log('someone created a new topic:', payload);
+});
+
+topicsChannel.join()
+  .receive('ok', function(resp) { console.log('got an OK response', resp) })
+  .receive('error', function(resp) { console.log('got an error response', resp) });

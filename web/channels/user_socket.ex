@@ -3,6 +3,7 @@ defmodule PrioritizeApi.UserSocket do
 
   ## Channels
   channel "rooms:*", PrioritizeApi.RoomChannel
+  channel "topics:*", PrioritizeApi.TopicsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
