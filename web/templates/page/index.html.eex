@@ -1,3 +1,13 @@
 <h1>Hello!</h1>
-<textarea id=newtopic></textarea>
-<button id=submitnewtopic>submit new topic</button>
+<label for=title>Title</label>
+<input type=text id=title></input>
+<label for=description>Description</label>
+<textarea id=description></textarea>
+
+<button id=submitnewtopic>Submit</button>
+
+<%= for topic <- @topics do %>
+    <ul id=topiclist>
+      <li><%= topic.title %></li>
+    </ul>
+<% end %>

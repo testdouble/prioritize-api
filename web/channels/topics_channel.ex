@@ -16,7 +16,7 @@ defmodule PrioritizeApi.TopicsChannel do
   # by sending replies to requests from the client
   # def handle_in("addTopic", %{"body" => payload}, socket) do
   def handle_in("addTopic", payload, socket) do
-    TopicController.save_topic(%{title: payload["body"], description: "default"})
+    TopicController.save_topic(%{title: payload["title"], description: payload["description"]})
     broadcast! socket, "newTopic", payload
     {:noreply, socket}
   end

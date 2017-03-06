@@ -1,7 +1,10 @@
 defmodule PrioritizeApi.PageController do
   use PrioritizeApi.Web, :controller
 
+  alias PrioritizeApi.Topic
+
   def index(conn, _params) do
-    render conn, "index.html"
+    topics = Repo.all(Topic)
+    render conn, "index.html", topics: topics
   end
 end

@@ -5,7 +5,8 @@
 window.socket = new Phoenix.Socket("/socket", {params: {userToken: '123'}});
 socket.connect();
 
-var newTopicText = document.getElementById('newtopic');
+var newTopicTitle = document.getElementById('title');
+var newTopicDesc = document.getElementById('description');
 var submitButton = document.getElementById('submitnewtopic');
 
 var topicsChannel = socket.channel('topics:suggest', {});
@@ -14,11 +15,17 @@ var topicsChannel = socket.channel('topics:suggest', {});
 
 submitButton.onclick = function() {
   topicsChannel.push('addTopic', {
-    body: newTopicText.value
+    title: newTopicTitle.value,
+    description: newTopicDesc.value
   });
 };
 
+var topicList = document.getElementById('topiclist')
+
 topicsChannel.on('newTopic', function(payload) {
+  var li = document.createElement('li');
+  li.innerHTML=payload.title;
+  topicList.appendChild(li);
   console.log('someone created a new topic:', payload);
 });
 
