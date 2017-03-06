@@ -33,10 +33,7 @@ class TopicsList extends React.Component {
         />
         <Button
           title="Submit"
-          onPress={() => this.props.addTopic({
-            title: this.state.title,
-            description: this.state.description
-          })}
+          onPress={() => alert("Hi")}
         />
 
       {this.props.topics.map((t) => {
@@ -50,9 +47,6 @@ class TopicsList extends React.Component {
 export default connect(
   state => ({
     topics: state.topics.topics
-  }),
-  dispatch => ({
-    addTopic: () => dispatch(addTopic())
   })
 )(TopicsList);
 
