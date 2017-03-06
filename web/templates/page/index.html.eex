@@ -1,4 +1,3 @@
 <h1>Hello!</h1>
 <textarea id=newtopic></textarea>
 <button id=submitnewtopic>submit new topic</button>
-<button id=push>push</button>

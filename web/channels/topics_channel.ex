@@ -1,6 +1,8 @@
 defmodule PrioritizeApi.TopicsChannel do
   use PrioritizeApi.Web, :channel
 
+  alias PrioritizeApi.TopicController
+
   def join("topics:" <> stage, payload, socket) when stage in ~w(suggest rank discuss) do
     if authorized?(payload) do
       # maybe broadcast to other users that someone has joined?
@@ -14,6 +16,7 @@ defmodule PrioritizeApi.TopicsChannel do
   # by sending replies to requests from the client
   # def handle_in("addTopic", %{"body" => payload}, socket) do
   def handle_in("addTopic", payload, socket) do
+    TopicController.save_topic(%{title: payload["body"], description: "default"})
     broadcast! socket, "newTopic", payload
     {:noreply, socket}
   end

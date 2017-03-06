@@ -14,9 +14,7 @@ defmodule PrioritizeApi.TopicController do
   end
 
   def create(conn, %{"topic" => topic_params}) do
-    changeset = Topic.changeset(%Topic{}, topic_params)
-
-    case Repo.insert(changeset) do
+    case save_topic(topic_params) do
       {:ok, _topic} ->
         conn
         |> put_flash(:info, "Topic created successfully.")
@@ -24,6 +22,11 @@ defmodule PrioritizeApi.TopicController do
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
+  end
+
+  def save_topic(topic) do
+    changeset = Topic.changeset(%Topic{}, topic)
+    Repo.insert(changeset)
   end
 
   def show(conn, %{"id" => id}) do
