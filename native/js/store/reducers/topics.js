@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case ADD_TOPIC:
       return {
         ...state,
-        topics: topics.concat(action.payload)
+        topics: state.topics.concat(action.payload)
       }
     default:
       return state;

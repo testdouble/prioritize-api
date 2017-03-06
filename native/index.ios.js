@@ -10,7 +10,6 @@ import {
   StatusBar
 } from 'react-native';
 
-
 import App from './js/app';
 
 export default class Prioritize extends Component {
