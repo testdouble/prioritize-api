@@ -21,6 +21,12 @@ defmodule PrioritizeApi.Router do
     resources "/users", UserController
     resources "/topics", TopicController
     resources "/votes", VoteController
+
+    resources "/registrations", RegistrationController, only: [:new, :create]
+
+    get    "/login",  SessionController, :new
+    post   "/login",  SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
 

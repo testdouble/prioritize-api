@@ -4,9 +4,11 @@ defmodule PrioritizeApi.UserTest do
   alias PrioritizeApi.User
 
   @valid_attrs %{
-    email: "some@email.com",
+    crypted_password: "some content",
+    email: "some content",
     name: "some name"
   }
+
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

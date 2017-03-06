@@ -4,11 +4,13 @@ defmodule PrioritizeApi.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :crypted_password, :string
+    field :password, :string, virtual: true
 
-    timestamps
+    timestamps()
   end
 
-  @required_fields ~w(name email)
+  @required_fields [:name, :email, :password]
   @optional_fields ~w()
 
   @doc """
@@ -20,8 +22,9 @@ defmodule PrioritizeApi.User do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_required(@required_fields)
     |> unique_constraint(:email)
     |> validate_format(:email, ~r/@/)
+    |> validate_length(:password, min: 3)
   end
-
 end

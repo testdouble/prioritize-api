@@ -52,6 +52,7 @@ defmodule PrioritizeApi.Web do
       import PrioritizeApi.Router.Helpers
       import PrioritizeApi.ErrorHelpers
       import PrioritizeApi.Gettext
+      import PrioritizeApi.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 
