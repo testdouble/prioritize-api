@@ -3,7 +3,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
       <th>Title</th>
       <th>Description</th>
 
@@ -13,7 +12,6 @@
   <tbody>
 <%= for topic <- @topics do %>
     <tr>
-      <td><%= topic.user_id %></td>
       <td><%= topic.title %></td>
       <td><%= topic.description %></td>
 

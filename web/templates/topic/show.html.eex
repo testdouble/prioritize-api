@@ -3,11 +3,6 @@
 <ul>
 
   <li>
-    <strong>User:</strong>
-    <%= @topic.user_id %>
-  </li>
-
-  <li>
     <strong>Title:</strong>
     <%= @topic.title %>
   </li>

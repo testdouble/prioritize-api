@@ -4,7 +4,6 @@ defmodule PrioritizeApi.Topic do
   schema "topics" do
     field :title, :string
     field :description, :string
-    belongs_to :user, PrioritizeApi.User
 
     timestamps()
   end
