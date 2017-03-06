@@ -1,0 +1,23 @@
+<h2>Show topic</h2>
+
+<ul>
+
+  <li>
+    <strong>User:</strong>
+    <%= @topic.user_id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @topic.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @topic.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: topic_path(@conn, :edit, @topic) %>
+<%= link "Back", to: topic_path(@conn, :index) %>

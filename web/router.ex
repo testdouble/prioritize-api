@@ -17,13 +17,17 @@ defmodule PrioritizeApi.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/users", UserController
+    resources "/topics", TopicController
   end
 
 
   # We should not have both stacks used for /, will likely just be API at some point
-  scope "/", PrioritizeApi do
+  scope "/api", PrioritizeApi do
     pipe_through :api
 
     resources "/users", UserController
+    resources "/topics", TopicController
   end
 end
