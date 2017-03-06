@@ -13,6 +13,16 @@ var topicsChannel = socket.channel('topics:suggest', {});
 // var rankChannel = socket.channel('topics:rank', {});
 // var discussChannel = socket.channel('topics:discuss', {});
 
+function handlevote(topicid) {
+    var userselect = document.getElementById('userselect');
+    var userid = userselect.options[userselect.selectedIndex].value
+
+    topicsChannel.push('addVote', {
+        user_id: userid,
+        topic_id: topicid
+    })
+}
+
 submitButton.onclick = function() {
   topicsChannel.push('addTopic', {
     title: newTopicTitle.value,
@@ -27,6 +37,14 @@ topicsChannel.on('newTopic', function(payload) {
   li.innerHTML=payload.title;
   topicList.appendChild(li);
   console.log('someone created a new topic:', payload);
+});
+
+topicsChannel.on('newVote', function(payload) {
+    console.log('someone voted:', payload);
+});
+
+topicsChannel.on('failedVote', function(payload) {
+    console.log('someone failed to voted:', payload);
 });
 
 topicsChannel.join()

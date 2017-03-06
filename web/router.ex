@@ -20,6 +20,7 @@ defmodule PrioritizeApi.Router do
 
     resources "/users", UserController
     resources "/topics", TopicController
+    resources "/votes", VoteController
   end
 
 
@@ -29,5 +30,6 @@ defmodule PrioritizeApi.Router do
 
     resources "/users", UserController
     resources "/topics", TopicController
+    resources "/votes", VoteController
   end
 end

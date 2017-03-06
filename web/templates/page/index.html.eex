@@ -1,4 +1,9 @@
 <h1>Hello!</h1>
+<select id=userselect>
+    <%= for user <- @users do %>
+    <option value=<%= user.id %>><%= user.name %></option>
+    <% end %>
+</select>
 <label for=title>Title</label>
 <input type=text id=title></input>
 <label for=description>Description</label>
@@ -8,6 +13,9 @@
 
 <ul id=topiclist>
 <%= for topic <- @topics do %>
-  <li><%= topic.title %></li>
+    <li>
+        <%= topic.title %>
+        <button id=voteontopic onclick="handlevote(<%= topic.id %>)">Vote</button>
+    </li>
 <% end %>
 </ul>

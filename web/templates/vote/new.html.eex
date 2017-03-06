@@ -1,0 +1,6 @@
+<h2>New vote</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: vote_path(@conn, :create) %>
+
+<%= link "Back", to: vote_path(@conn, :index) %>
