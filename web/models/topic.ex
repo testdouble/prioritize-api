@@ -4,6 +4,7 @@ defmodule PrioritizeApi.Topic do
   schema "topics" do
     field :title, :string
     field :description, :string
+    has_many :votes, PrioritizeApi.Vote
 
     timestamps()
   end

@@ -1,8 +1,7 @@
 defmodule PrioritizeApi.TopicsChannel do
   use PrioritizeApi.Web, :channel
 
-  alias PrioritizeApi.TopicController
-  alias PrioritizeApi.VoteController
+  alias PrioritizeApi.{Topic, TopicController, VoteController}
 
   def join("topics:" <> stage, payload, socket) when stage in ~w(suggest rank discuss) do
     if authorized?(payload) do
@@ -26,8 +25,9 @@ defmodule PrioritizeApi.TopicsChannel do
     response  = VoteController.save_vote(%{user_id: payload["user_id"], topic_id: payload["topic_id"]})
 
     case response do
-      {:ok, _} -> 
-        broadcast! socket, "newVote", payload
+      {:ok, vote} ->
+        votes = votes_for_topic(vote.topic_id)
+        broadcast! socket, "newVote", Map.put(payload, :vote_count, votes)
       {:error, stuff} ->
         IO.puts inspect(stuff)
         broadcast! socket, "failedVote", payload
@@ -46,5 +46,12 @@ defmodule PrioritizeApi.TopicsChannel do
   # Add authorization logic here as required.
   defp authorized?(_payload) do
     true
+  end
+
+  defp votes_for_topic(topic_id) do
+    Repo.get(Topic, topic_id)
+    |> Repo.preload(:votes)
+    |> Map.fetch!(:votes)
+    |> Enum.count
   end
 end

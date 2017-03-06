@@ -11,11 +11,17 @@
 
 <button id=submitnewtopic>Submit</button>
 
-<ul id=topiclist>
-<%= for topic <- @topics do %>
-    <li>
-        <%= topic.title %>
-        <button id=voteontopic onclick="handlevote(<%= topic.id %>)">Vote</button>
-    </li>
-<% end %>
-</ul>
+<table id="topictable">
+  <tr>
+    <td></td>
+    <td>Title</td>
+    <td># of Votes</td>
+  </tr>
+  <%= for topic <- @topics do %>
+    <tr trtopicid=<%= topic.id %>>
+      <td><button id=voteontopic onclick="handlevote(<%= topic.id %>)">Vote</button></td>
+      <td><%= topic.title %></td>
+      <td id=votecount><%= Enum.count topic.votes %></td>
+    </tr>
+  <% end %>
+</table>

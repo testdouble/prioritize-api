@@ -30,16 +30,16 @@ submitButton.onclick = function() {
   });
 };
 
-var topicList = document.getElementById('topiclist')
+var topicList = document.getElementById('topictable')
 
 topicsChannel.on('newTopic', function(payload) {
-  var li = document.createElement('li');
-  li.innerHTML=payload.title;
-  topicList.appendChild(li);
+  window.location.reload();
   console.log('someone created a new topic:', payload);
 });
 
 topicsChannel.on('newVote', function(payload) {
+    var topicTr = document.querySelector('[trtopicid="' + payload['topic_id'] + '"]');
+    topicTr.querySelector('#votecount').innerHTML = payload['vote_count'];
     console.log('someone voted:', payload);
 });
 
