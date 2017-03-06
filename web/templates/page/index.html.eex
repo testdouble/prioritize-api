@@ -6,8 +6,8 @@
 
 <button id=submitnewtopic>Submit</button>
 
+<ul id=topiclist>
 <%= for topic <- @topics do %>
-    <ul id=topiclist>
-      <li><%= topic.title %></li>
-    </ul>
+  <li><%= topic.title %></li>
 <% end %>
+</ul>
