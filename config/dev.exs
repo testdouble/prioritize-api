@@ -35,8 +35,6 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :prioritize_api, PrioritizeApi.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "prioritize_api_dev",
   hostname: "localhost",
   pool_size: 10

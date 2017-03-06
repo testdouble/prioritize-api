@@ -5,6 +5,10 @@
 # is restricted to this project.
 use Mix.Config
 
+# General application configuration
+config :prioritize_api,
+  ecto_repos: [PrioritizeApi.Repo]
+
 # Configures the endpoint
 config :prioritize_api, PrioritizeApi.Endpoint,
   url: [host: "localhost"],
@@ -22,8 +26,3 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
-
-# Configure phoenix generators
-config :phoenix, :generators,
-  migration: true,
-  binary_id: false
