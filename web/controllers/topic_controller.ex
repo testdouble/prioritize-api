@@ -3,6 +3,14 @@ defmodule PrioritizeApi.TopicController do
 
   alias PrioritizeApi.Topic
 
+  def index(conn, %{"format" => "json"} = params) do
+    topics =
+      Repo.all(Topic)
+      |> Enum.map(fn (t) -> Repo.preload(t, :votes) end)
+      |> Enum.map(fn (t) -> %{id: t.id, title: t.title, description: t.description, votes: Enum.count(t.votes)} end)
+    render(conn, "topics.json", topics: topics)
+  end
+
   def index(conn, _params) do
     topics = Repo.all(Topic)
     render(conn, "index.html", topics: topics)

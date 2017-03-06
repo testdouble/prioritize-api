@@ -34,8 +34,6 @@ defmodule PrioritizeApi.Router do
   scope "/api", PrioritizeApi do
     pipe_through :api
 
-    resources "/users", UserController
-    resources "/topics", TopicController
-    resources "/votes", VoteController
+    get "/topics", TopicController, :index
   end
 end
